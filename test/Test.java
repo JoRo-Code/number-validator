@@ -1,5 +1,6 @@
 import src.validator.Validator;
 import src.validator.number.Persnumber;
+import src.validator.number.InvalidNumberException;
 import src.validator.number.Number;
 
 import java.io.IOException;
@@ -60,7 +61,8 @@ public class Test {
 
     private static void parserTests() {
     System.out.println("Parser tests");
-     // Valid
+    // Valid
+        System.out.println("Valid input tests");
 
         String number;
         // 12
@@ -122,16 +124,27 @@ public class Test {
         test(n4.getDay().equals("18"), true);
         test(n4.getDelimiter().equals(""), true);
         test(n4.getLast4().equals("9811"), true);
-    //Invalid
-        // Should throw an exception which can be caught and then evaluated
-    /* // TODO: 
-        // empty
-        Number n4 = new Number("");
-        // String
-        Number n5 = new Number("Hello");
-        // 10 w/ ?
-        Number n6 = new Number("900118?9811");
-    */
+
+    //Invalid input
+
+        System.out.println("Invalid input tests");
+        String[] invalidInput = {
+            ""                  // Empty
+            , "hello"           // no numbers
+            , "900118?9811"     // invalid delimiter
+        };
+        for (String input: invalidInput) {
+
+            boolean result = false;
+            try {
+                Number n5 = new Number(input);
+            }
+            catch (InvalidNumberException e) {
+                result = true;
+            }
+            test(result, true);
+
+        }
     }
 
     private static void persnumberTests() {

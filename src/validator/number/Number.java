@@ -1,5 +1,7 @@
 package src.validator.number;
 
+import src.validator.number.InvalidNumberException;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -35,7 +37,8 @@ public class Number {
         return this.last4;
     }
 
-    private void parse(String str) {
+    private void parse(String str) 
+                throws InvalidNumberException {
 
         String delimiters = "+-";
         String pattern = "^(\\d{2})?(\\d{2})(\\d{2})(\\d{2})([" + delimiters + "]?)(\\d{4})$";
@@ -54,7 +57,7 @@ public class Number {
             this.last4 = m.group(6);
         }
         else {
-            throw new RuntimeException("Invalid input");
+            throw new InvalidNumberException("Invalid input: " + "'" + str + "'");
         }
 
 
