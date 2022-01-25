@@ -13,7 +13,8 @@ Number types:
 ## Usage
 
 - `make run` - to run main validator
-- `make clean` - cleans class-files
+- `make clean` - to clean class-files
+- `make test` - to run tests
 
 ## Documentation
 
