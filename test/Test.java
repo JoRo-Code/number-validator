@@ -64,66 +64,26 @@ public class Test {
     // Valid
         System.out.println("Valid input tests");
 
-        String number;
-        // 12
-        number = "201701102384";
-        Number n0 = new Number(number);
-        System.out.println(n0);
-        test(number.equals(n0.toString()), true);
-        test(n0.getCentury().equals("20"), true);
-        test(n0.getYear().equals("17"), true);
-        test(n0.getMonth().equals("01"), true);
-        test(n0.getDay().equals("10"), true);
-        test(n0.getDelimiter().equals(""), true);
-        test(n0.getLast4().equals("2384"), true);
+        String[][] numberContextArray = {
+                {"201701102384",    "20",   "17",   "01",   "10",   "",     "2384"} // 12 digits
+            ,   {"20080903-2386",   "20",   "08",   "09",   "03",   "-",    "2386"} // 12 digits w/ delimiter -
+            ,   {"9001189811",      "",     "90",   "01",   "18",   "",     "9811"} // 10 digits w/ delimiter
+            ,   {"141206-2380",     "",     "14",   "12",   "06",   "-",    "2380"} // 10 digits w/ delimiter -
+            ,   {"900118+9811",     "",     "90",   "01",   "18",   "+",    "9811"} // 10 digits w/ delimiter +
+        };
 
-        // 12 w/ -
-        number = "20080903-2386";
-        Number n1 = new Number(number);
-        System.out.println(n1);
-        test(number.equals(n1.toString()), true);
-        test(n1.getCentury().equals("20"), true);
-        test(n1.getYear().equals("08"), true);
-        test(n1.getMonth().equals("09"), true);
-        test(n1.getDay().equals("03"), true);
-        test(n1.getDelimiter().equals("-"), true);
-        test(n1.getLast4().equals("2386"), true);
-        
-        // 10 w/ - 
-        number = "141206-2380";
-        Number n2 = new Number(number);
-        System.out.println(n2);
-        test(number.equals(n2.toString()), true);
-        test(n2.getCentury().equals(""), true);
-        test(n2.getYear().equals("14"), true);
-        test(n2.getMonth().equals("12"), true);
-        test(n2.getDay().equals("06"), true);
-        test(n2.getDelimiter().equals("-"), true);
-        test(n2.getLast4().equals("2380"), true);
-
-        // 10 w/ + 
-        number = "900118+9811";
-        Number n3 = new Number(number);
-        System.out.println(n3);
-        test(number.equals(n3.toString()), true);
-        test(n3.getCentury().equals(""), true);
-        test(n3.getYear().equals("90"), true);
-        test(n3.getMonth().equals("01"), true);
-        test(n3.getDay().equals("18"), true);
-        test(n3.getDelimiter().equals("+"), true);
-        test(n3.getLast4().equals("9811"), true);
-
-        // 10 
-        number = "9001189811";
-        Number n4 = new Number(number);
-        System.out.println(n4);
-        test(number.equals(n4.toString()), true);
-        test(n4.getCentury().equals(""), true);
-        test(n4.getYear().equals("90"), true);
-        test(n4.getMonth().equals("01"), true);
-        test(n4.getDay().equals("18"), true);
-        test(n4.getDelimiter().equals(""), true);
-        test(n4.getLast4().equals("9811"), true);
+        for (String[] numberContext: numberContextArray) {
+            String number = numberContext[0];
+            Number n = new Number(number);
+            System.out.println(n);
+            test(number.equals(n.toString()), true);
+            test(n.getCentury().equals(numberContext[1]), true);
+            test(n.getYear().equals(numberContext[2]), true);
+            test(n.getMonth().equals(numberContext[3]), true);
+            test(n.getDay().equals(numberContext[4]), true);
+            test(n.getDelimiter().equals(numberContext[5]), true);
+            test(n.getLast4().equals(numberContext[6]), true);
+        }
 
     //Invalid input
 
