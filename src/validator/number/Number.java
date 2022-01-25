@@ -1,9 +1,13 @@
 package src.validator.number;
 
 import src.validator.number.InvalidNumberException;
+import src.validator.checks.*;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Number {
     private String century = "";
@@ -13,29 +17,9 @@ public class Number {
     private String delimiter = "";
     private String last4 = "";
 
-    public final String getCentury() {
-        return this.century;
-    }
-    
-    public final String getYear() {
-        return this.year;
-    }
-    
-    public final String getMonth() {
-        return this.month;
-    }
-    
-    public final String getDay() {
-        return this.day;
-    }
-    
-    public final String getDelimiter() {
-        return this.delimiter;
-    }
-    
-    public final String getLast4() {
-        return this.last4;
-    }
+    protected ArrayList<ValidityCheck> checks = new ArrayList<ValidityCheck>(Arrays.asList(
+        new Luhn()
+    ));
 
     private void parse(String str) 
                 throws InvalidNumberException {
@@ -68,8 +52,44 @@ public class Number {
     }
 
     public boolean isValid() {
-        return false; //TODO: implement
+        boolean result = true;
+        for (ValidityCheck check: checks)
+        {
+            result = check.run(this) && result;
+        }
+        return result;
     }
+
+    // Getters
+    
+    public final String getLast() {
+        return this.last4.substring(3);
+    }
+    
+    public final String getCentury() {
+        return this.century;
+    }
+    
+    public final String getYear() {
+        return this.year;
+    }
+    
+    public final String getMonth() {
+        return this.month;
+    }
+    
+    public final String getDay() {
+        return this.day;
+    }
+    
+    public final String getDelimiter() {
+        return this.delimiter;
+    }
+    
+    public final String getLast4() {
+        return this.last4;
+    }
+
 
     @Override
     public String toString() {

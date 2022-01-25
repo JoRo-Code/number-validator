@@ -22,8 +22,7 @@ public class Validator {
     public static void validate(String str) {
         System.out.println(str);
         Number n = new Number(str);
-        Number p = new Persnumber(str);
-        if (p.isValid()) {
+        if (n.isValid()) {
             System.out.println("Valid");
         }
         else {

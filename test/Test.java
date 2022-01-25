@@ -2,6 +2,7 @@ import src.validator.Validator;
 import src.validator.number.Persnumber;
 import src.validator.number.InvalidNumberException;
 import src.validator.number.Number;
+import src.validator.checks.*;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -130,9 +131,35 @@ public class Test {
         }
     }
 
+    private static void luhnTests() {
+        ValidityCheck luhn = new Luhn();
+        System.out.println(luhn);
+        
+        List<String> numbers = readFromFile("test/input/validLuhn.txt");
+        for (String str: numbers) {
+            System.out.println(str);
+            Number n = new Number(str);
+            boolean result = luhn.run(n);
+            test(result, true);
+
+        }
+        
+        numbers = readFromFile("test/input/invalidLuhn.txt");
+        for (String str: numbers) {
+            System.out.println(str);
+            Number n = new Number(str);
+            boolean result = luhn.run(n);
+            test(result, false);
+
+        }
+        
+
+    }
+
 
     private static void runTests() {
         parserTests();
+        luhnTests();
         //persnumberTests();
         // TODO: add more tests
 
