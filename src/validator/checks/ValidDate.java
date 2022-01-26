@@ -21,9 +21,13 @@ public class ValidDate extends ValidityCheck {
 
     private boolean isValidCentury(Number n) {
         String c = n.getCentury();
-        int century = Integer.parseInt(c);
+        boolean result = true;
 
-        boolean result = 17 < century && century < 21;
+        if (!c.equals("")) {
+            int century = Integer.parseInt(c);
+            result = 17 < century && century < 21;
+
+        }
         return result;
 
     }
