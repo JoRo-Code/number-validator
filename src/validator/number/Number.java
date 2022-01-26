@@ -54,11 +54,23 @@ public class Number {
         parse(number);
     }
 
+    /**
+   * @param number the number to validate
+   * @param verbose        to log checks
+   */
+    public Number(String number, boolean verbose) {
+        parse(number);
+        this.verbose = verbose;
+    }
+
     public boolean isValid() {
         boolean result = true;
         for (ValidityCheck check: checks)
         {
             result = check.run(this) && result;
+            if (this.verbose) {
+                System.out.println((result == true? "Passed":"Failed") + ": " + check);
+            }
         }
         return result;
     }

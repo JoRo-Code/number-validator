@@ -1,6 +1,8 @@
 package src.validator;
 
 import java.util.Scanner;
+
+import src.validator.number.InvalidNumberException;
 import src.validator.number.Number;
 import src.validator.number.Persnumber;
 
@@ -21,8 +23,14 @@ public class Validator {
 
     public static void validate(String str) {
         System.out.println(str);
-        Number n = new Number(str);
-        if (n.isValid()) {
+        Number n = null;
+        try {
+            n = new Number(str, true);
+        }
+        catch (InvalidNumberException e) {
+            System.out.println(e.getMessage());
+        }
+        if (n !=null && n.isValid()) {
             System.out.println("Valid");
         }
         else {
