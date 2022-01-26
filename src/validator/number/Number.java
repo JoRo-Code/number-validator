@@ -17,8 +17,11 @@ public class Number {
     private String delimiter = "";
     private String last4 = "";
 
+    protected boolean verbose = false;
+
     protected ArrayList<ValidityCheck> checks = new ArrayList<ValidityCheck>(Arrays.asList(
-        new Luhn()
+        new Luhn(),
+        new NumberFormatCheck()
     ));
 
     private void parse(String str) 
