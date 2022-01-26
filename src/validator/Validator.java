@@ -5,6 +5,8 @@ import java.util.Scanner;
 import src.validator.number.InvalidNumberException;
 import src.validator.number.Number;
 import src.validator.number.Persnumber;
+import src.validator.number.Samnumber;
+import src.validator.number.Orgnumber;
 
 public class Validator {
     private static String PROMPT = "? ";
@@ -22,19 +24,27 @@ public class Validator {
     }
 
     public static void validate(String str) {
-        System.out.println(str);
+        Boolean verbose = true;
         Number n = null;
+
         try {
             n = new Number(str);
         }
         catch (InvalidNumberException e) {
             System.out.println(e.getMessage());
         }
-        if (n !=null && n.isValid(true)) {
-            System.out.println("Valid");
-        }
-        else {
-            System.out.println("inValid");
+
+        if (n !=null && n.isValid()) {
+            Number p = new Persnumber(str);
+            Number s = new Samnumber(str);
+            Number o = new Orgnumber(str);
+
+            Number[] numberTypes = {p, s, o};
+
+            for (Number type: numberTypes) {
+                 type.isValid(verbose);
+            }
+
         }
 
         // TODO: validate all types of numbers
