@@ -17,8 +17,6 @@ public class Number {
     private String delimiter = "";
     private String last4 = "";
 
-    protected boolean verbose = false;
-
     protected ArrayList<ValidityCheck> checks = new ArrayList<ValidityCheck>(Arrays.asList(
         new Luhn(),
         new NumberFormatCheck()
@@ -50,29 +48,25 @@ public class Number {
 
     }
 
+
     public Number(String number) {
         parse(number);
     }
 
-    /**
-   * @param number the number to validate
-   * @param verbose        to log checks
-   */
-    public Number(String number, boolean verbose) {
-        parse(number);
-        this.verbose = verbose;
-    }
-
-    public boolean isValid() {
+    public boolean isValid(boolean verbose) {
         boolean result = true;
         for (ValidityCheck check: checks)
         {
             result = check.run(this) && result;
-            if (this.verbose) {
+            if (verbose) {
                 System.out.println((result == true? "Passed":"Failed") + ": " + check);
             }
         }
         return result;
+    }
+    
+    public boolean isValid() {
+        return isValid(false);
     }
 
     // Getters

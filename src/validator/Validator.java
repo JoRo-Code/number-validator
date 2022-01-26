@@ -25,12 +25,12 @@ public class Validator {
         System.out.println(str);
         Number n = null;
         try {
-            n = new Number(str, true);
+            n = new Number(str);
         }
         catch (InvalidNumberException e) {
             System.out.println(e.getMessage());
         }
-        if (n !=null && n.isValid()) {
+        if (n !=null && n.isValid(true)) {
             System.out.println("Valid");
         }
         else {

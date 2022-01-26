@@ -6,8 +6,8 @@ public class Samnumber extends Number{
         super(str);
         this.checks.add(
             new ValidDate()
+            // Add checks here
         );
-        this.verbose = true;
     }
     
 }
