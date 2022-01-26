@@ -7,10 +7,17 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 public class ValidDate extends ValidityCheck {
+
+    private int dayOffset = 0;
     
     public ValidDate() {
-        this.name = "Valid date";
+        this(0);
 
+    }
+    
+    public ValidDate(int dayOffset) {
+        this.name = "Valid date";
+        this.dayOffset = dayOffset;
     }
 
 
@@ -25,7 +32,27 @@ public class ValidDate extends ValidityCheck {
         return true;
     }
 
-    private String getBirthdate(Number n) {
+    private String getDayWithOffset(Number n) {
+        String day = n.getDay();
+        int dayInt = Integer.parseInt(n.getDay()) - this.dayOffset;
+        
+        day = Integer.toString(dayInt);
+        if (day.length() != 2) {
+            day = "0" + day;
+        }
+
+        return day;
+    }
+
+    /**
+   * Calculates century of a given number 
+   * with unknown century, depending on delimiter
+   * 
+   * @param n the Number to get century from
+   * @return a String with format XX
+   */
+    private String calculateCentury(Number n) {
+
         String century = n.getCentury();
 
         if (century.equals("") ) {
@@ -42,10 +69,15 @@ public class ValidDate extends ValidityCheck {
             century = Integer.toString(birthYear / 100);
         }
 
-        String date = century
+        return century;
+    }
+
+    private String getBirthdate(Number n) {
+
+        String date = calculateCentury(n)
                     + n.getYear() 
                     + n.getMonth() 
-                    + n.getDay();
+                    + getDayWithOffset(n);
 
         return date;
 
