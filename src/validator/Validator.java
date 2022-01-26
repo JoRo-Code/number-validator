@@ -34,7 +34,7 @@ public class Validator {
             System.out.println(e.getMessage());
         }
 
-        if (n !=null && n.isValid()) {
+        if (n !=null) {
             Number p = new Persnumber(str);
             Number s = new Samnumber(str);
             Number o = new Orgnumber(str);

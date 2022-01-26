@@ -60,10 +60,11 @@ public class Number {
         if (verbose) { System.out.println(this.getClass().getSimpleName());}
         for (ValidityCheck check: checks)
         {
-            result = check.run(this) && result;
+            boolean validityCheck = check.run(this);
             if (verbose) {
-                System.out.println((result == true? Green("Passed") : Red("Failed")) + ": " + check);
+                System.out.println((validityCheck == true? Green("Passed") : Red("Failed")) + ": " + check);
             }
+            result = validityCheck && result;
         }
         return result;
     }
