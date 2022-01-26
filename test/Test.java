@@ -1,9 +1,12 @@
 import src.validator.Validator;
-import src.validator.number.Persnumber;
-import src.validator.number.InvalidNumberException;
 import src.validator.number.Number;
+import src.validator.number.Persnumber;
+import src.validator.number.Samnumber;
+import src.validator.number.Orgnumber;
+import src.validator.number.InvalidNumberException;
 import src.validator.checks.*;
 
+// readFromFile()
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -108,28 +111,6 @@ public class Test {
         }
     }
 
-    private static void persnumberTests() {
-        
-        // valid
-        System.out.println("Valid persnumber");
-        List<String> strings = readFromFile("test/input/validPersnumber.txt");
-        for (String str: strings) {
-            Persnumber p = new Persnumber(str);
-            boolean result = p.isValid();
-            System.out.println(str);
-            test(result, true);
-        }
-        
-        // invalid
-        System.out.println("Invalid persnumber");
-        strings = readFromFile("test/input/invalidPersnumber.txt");
-        for (String str: strings) {
-            Persnumber p = new Persnumber(str);
-            boolean result = p.isValid();
-            System.out.println(str);
-            test(result, false);
-        }
-    }
 
     private static void luhnTests() {
         ValidityCheck luhn = new Luhn();
@@ -152,15 +133,87 @@ public class Test {
             test(result, false);
 
         }
+    }
+    
+    private static void persnumberTests() {
         
+        // valid
+        System.out.println("Valid persnumber");
+        List<String> strings = readFromFile("test/input/validPersnumber.txt");
+        for (String str: strings) {
+            System.out.println(str);
+            Persnumber p = new Persnumber(str);
+            boolean result = p.isValid();
+            test(result, true);
+        }
+        
+        // invalid
+        System.out.println("Invalid persnumber");
+        strings = readFromFile("test/input/invalidPersnumber.txt");
+        for (String str: strings) {
+            System.out.println(str);
+            Persnumber p = new Persnumber(str);
+            boolean result = p.isValid();
+            test(result, false);
+        }
+    }
 
+
+    private static void samnumberTests() {
+        
+        // valid
+
+        System.out.println("Valid samnumber");
+        List<String> strings = readFromFile("test/input/validSamnumber.txt");
+        for (String str: strings) {
+            System.out.println(str);
+            Number n = new Samnumber(str);
+            boolean result = n.isValid();
+            test(result, true);
+        }
+        
+        // invalid
+        System.out.println("Invalid samnumber");
+        strings = readFromFile("test/input/invalidSamnumber.txt");
+        for (String str: strings) {
+            System.out.println(str);
+            Number n = new Samnumber(str);
+            boolean result = n.isValid();
+            test(result, false);
+        }
+    }
+    
+    private static void orgnumberTests() {
+        
+        // valid
+
+        System.out.println("Valid orgnumber");
+        List<String> strings = readFromFile("test/input/validOrgnumber.txt");
+        for (String str: strings) {
+            System.out.println(str);
+            Number n = new Orgnumber(str);
+            boolean result = n.isValid();
+            test(result, true);
+        }
+        
+        // invalid
+        System.out.println("Invalid orgnumber");
+        strings = readFromFile("test/input/invalidOrgnumber.txt");
+        for (String str: strings) {
+            System.out.println(str);
+            Number n = new Orgnumber(str);
+            boolean result = n.isValid();
+            test(result, false);
+        }
     }
 
 
     private static void runTests() {
         parserTests();
         luhnTests();
-        //persnumberTests();
+        persnumberTests();
+        samnumberTests();
+        orgnumberTests();
         // TODO: add more tests
 
     } 
