@@ -3,6 +3,8 @@ package src.validator.number;
 import src.validator.number.InvalidNumberException;
 import src.validator.checks.*;
 
+import static src.utils.Color.*;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -55,11 +57,12 @@ public class Number {
 
     public boolean isValid(boolean verbose) {
         boolean result = true;
+        if (verbose) { System.out.println(this.getClass().getSimpleName());}
         for (ValidityCheck check: checks)
         {
             result = check.run(this) && result;
             if (verbose) {
-                System.out.println((result == true? "Passed":"Failed") + ": " + check);
+                System.out.println((result == true? Green("Passed") : Red("Failed")) + ": " + check);
             }
         }
         return result;
@@ -99,7 +102,7 @@ public class Number {
         return this.last4;
     }
 
-
+    
     @Override
     public String toString() {
         return this.century + this.year + this.month + this.day + this.delimiter + this.last4;

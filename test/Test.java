@@ -6,6 +6,8 @@ import src.validator.number.Orgnumber;
 import src.validator.number.InvalidNumberException;
 import src.validator.checks.*;
 
+import static src.utils.Color.*;
+
 // readFromFile()
 import java.io.IOException;
 import java.nio.file.Files;
@@ -18,20 +20,14 @@ public class Test {
     private static int numberOfTests;
     private static Validator validator = new Validator();
 
-    private static final String ANSI_RED = "\u001B[31m";
-    private static final String ANSI_GREEN = "\u001B[32m";
-    private static final String ANSI_RESET = "\u001B[0m";
-
-
-
     private static void printStatistics() {
         int failedTests = numberOfTests - passedTests;
         if(failedTests == 0) {
             System.out.println("Passed " + passedTests + "/" + numberOfTests + " test" + (failedTests == 1? "":"s"));
-            System.out.println(ANSI_GREEN + "All tests passed!" + ANSI_RESET);
+            System.out.println( Green("All tests passed!"));
         } else {
             System.out.println("Passed " + passedTests + "/" + numberOfTests + " tests");
-            System.out.println(ANSI_RED + "Failed " + failedTests + " test" + (failedTests == 1? "":"s") + " (see above)" + ANSI_RESET);
+            System.out.println( Red( "Failed " + failedTests + " test" + (failedTests == 1? "":"s") + " (see above)" ));
         }
     }
 
@@ -40,10 +36,10 @@ public class Test {
 
         if (actual == expected) {
             passedTests++;
-            System.out.println(ANSI_GREEN + "- Passed" + ANSI_RESET);
+            System.out.println(Green( "- Passed"));
         }
         else {
-            System.out.println(ANSI_RED + "- Failed" + ANSI_RESET);
+            System.out.println(Red("- Failed"));
         }
     }
 
