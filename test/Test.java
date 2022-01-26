@@ -134,6 +134,35 @@ public class Test {
 
         }
     }
+
+    private static void validDateTests() {
+        System.out.println("DateValidator tests");
+        ValidityCheck dateChecker = new ValidDate();
+
+        String valid = "valid";
+        String invalid = "invalid";
+
+        String[][] numberArrayContext = {
+                // date             expected
+                {"19980301-0000",  valid        } // 12 digit
+            ,   {"980301-0000"  ,  valid        } // 10 digit
+            ,   {"19980230-0000",  invalid      } // february 30
+            ,   {"19981301-0000",  invalid      } // 13 month
+            ,   {"30301301-0000",  invalid      } // future
+            ,   {"901201+0000"  ,  valid      } // 100 >
+        };
+
+        for (String[] numberContext: numberArrayContext) {
+            String str = numberContext[0];
+            boolean expected = numberContext[1].equals(valid); 
+
+            System.out.println(str);
+            Number n = new Number(str);
+            boolean result = dateChecker.run(n);
+            test(result, expected);
+
+        }
+    }
     
     private static void persnumberTests() {
         
@@ -211,9 +240,12 @@ public class Test {
     private static void runTests() {
         parserTests();
         luhnTests();
+        validDateTests();
+        /*
         persnumberTests();
         samnumberTests();
         orgnumberTests();
+        */
         // TODO: add more tests
 
     } 
