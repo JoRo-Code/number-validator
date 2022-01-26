@@ -4,8 +4,6 @@ import src.validator.number.Number;
 
 public abstract class ValidityCheck {
     
-    protected String name = "ValidityCheck";
-
     public boolean run(Number n) {
         return false;
 
@@ -13,7 +11,7 @@ public abstract class ValidityCheck {
 
     @Override
     public String toString() {
-        return this.name;
+        return this.getClass().getSimpleName();
     }
     
 }

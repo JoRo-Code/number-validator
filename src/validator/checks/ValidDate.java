@@ -16,7 +16,6 @@ public class ValidDate extends ValidityCheck {
     }
     
     public ValidDate(int dayOffset) {
-        this.name = "Valid date";
         this.dayOffset = dayOffset;
     }
 

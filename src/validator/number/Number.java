@@ -102,7 +102,7 @@ public class Number {
         return this.last4;
     }
 
-    
+
     @Override
     public String toString() {
         return this.century + this.year + this.month + this.day + this.delimiter + this.last4;

@@ -4,10 +4,6 @@ import src.validator.number.Number;
 
 public class Luhn extends ValidityCheck {
     
-    public Luhn() {
-        this.name = "Luhn";
-    }
-    
     private static int toInt(char c) {
         return c - '0'; 
     }
