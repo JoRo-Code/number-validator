@@ -4,13 +4,10 @@ import java.util.Scanner;
 
 import src.validator.number.InvalidNumberException;
 import src.validator.number.Number;
-import src.validator.number.Persnumber;
-import src.validator.number.Samnumber;
-import src.validator.number.Orgnumber;
+import src.validator.number.*;
 
 public class Validator {
     private static String PROMPT = "? ";
-
 
     private static String readInput() {
         Scanner sc = new Scanner(System.in);
@@ -23,6 +20,10 @@ public class Validator {
 
     }
 
+    /**
+   * Performs checks for each number type and logs result
+   * @param str     string to be validated. 
+   */
     public static void validate(String str) {
         Boolean verbose = true;
         Number n = null;
@@ -35,27 +36,22 @@ public class Validator {
         }
 
         if (n !=null) {
-            Number p = new Persnumber(str);
-            Number s = new Samnumber(str);
-            Number o = new Orgnumber(str);
 
-            Number[] numberTypes = {p, s, o};
+            Number[] numberTypes = {
+                new Persnumber(str)
+            ,   new Samnumber(str)
+            ,   new Orgnumber(str)
+            };
 
             for (Number type: numberTypes) {
-                 type.isValid(verbose);
+                type.isValid(verbose);
             }
-
         }
-
-        // TODO: validate all types of numbers
-
     }
 
     public static void main(String[] args) {
 
         String input = readInput();
         validate(input);
-
     }
-    
 }

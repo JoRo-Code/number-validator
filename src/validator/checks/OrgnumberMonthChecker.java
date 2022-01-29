@@ -2,7 +2,7 @@ package src.validator.checks;
 
 import src.validator.number.Number;
 
-public class OrgMonthChecker extends ValidityCheck {
+public class OrgnumberMonthChecker extends ValidityCheck {
 
     private boolean isValidMonth(Number n) {
         String m = n.getMonth();
