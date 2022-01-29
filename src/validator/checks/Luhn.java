@@ -9,7 +9,7 @@ public class Luhn extends ValidityCheck {
     }
    
     // Converts Number to YYDDMMXXX format
-    private String luhn_format(Number n) {
+    private String luhnFormat(Number n) {
         String s = n.getYear() + n.getMonth() + n.getDay() + n.getLast4();
         return s.substring(0, s.length()-1);
     }
@@ -39,7 +39,7 @@ public class Luhn extends ValidityCheck {
     @Override
     public boolean run(Number n) {
         
-        int luhn = luhn(luhn_format(n));
+        int luhn = luhn(luhnFormat(n));
         int last = toInt(n.getLast().charAt(0));
 
         return luhn == last;
