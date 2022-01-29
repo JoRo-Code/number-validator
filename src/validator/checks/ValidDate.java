@@ -62,7 +62,6 @@ public class ValidDate extends ValidityCheck {
 
             if (n.getDelimiter().equals("+")) {
                 birthYear -= 100; // birthyear > 100 years ago
-                // TODO: how to decide if its 100 or 200 years?
             }
 
             century = Integer.toString(birthYear / 100);

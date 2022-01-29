@@ -9,6 +9,8 @@ Number types:
 - samnummer
 - organisationsnummer
 
+## Requirements
+* [OpenJDK 11](https://adoptopenjdk.net/?variant=openjdk11&jvmVariant=hotspot)
 
 ## Usage
 

@@ -298,7 +298,6 @@ public class Test {
         samnumberTests();
         orgnumberTests();
         validCenturyTests();
-        // TODO: add more tests
 
     } 
 
