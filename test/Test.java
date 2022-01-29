@@ -160,6 +160,63 @@ public class Test {
         }
     }
     
+    private static void validCenturyTests() {
+        System.out.println("Centurycheck tests");
+        ValidityCheck dateChecker = new CenturyChecker();
+
+        String valid = "valid";
+        String invalid = "invalid";
+
+        // Persnumber and Samnumber
+
+        String[][] numberArrayContext = {
+                // date             expected
+                {"17000301-0000",  invalid      } // 1700
+            ,   {"18981301-0000",  valid        } // 1800
+            ,   {"19980230-0000",  valid        } // 1900
+            ,   {"20000000-0000",  valid        } // 2000
+            ,   {"30301301-0000",  invalid      } // future
+            ,   {"901201+0000"  ,  valid        } // 10 digit
+        };
+
+        for (String[] numberContext: numberArrayContext) {
+            String str = numberContext[0];
+            boolean expected = numberContext[1].equals(valid); 
+
+            System.out.println(str);
+            Number n = new Number(str);
+            boolean result = dateChecker.run(n);
+            test(result, expected);
+
+        }
+        
+        // Orgnumber
+
+        String[][] orgNumberArrayContext = {
+                // date             expected
+                {"17000301-0000",  invalid      } // 1700
+            ,   {"18981301-0000",  invalid      } // 1800
+            ,   {"19980230-0000",  invalid      } // 1900
+            ,   {"20000000-0000",  invalid      } // 2000
+            ,   {"30301301-0000",  invalid      } // future
+            ,   {"901201+0000"  ,  valid        } // 10 digit
+            ,   {"16901201-0000",  valid        } // 16
+        };
+
+        for (String[] numberContext: orgNumberArrayContext) {
+            String str = numberContext[0];
+            boolean expected = numberContext[1].equals(valid); 
+
+            System.out.println(str);
+            Number n = new Orgnumber(str);
+            boolean result = dateChecker.run(n);
+            test(result, expected);
+
+        }
+
+
+    }
+    
     private static void persnumberTests() {
         
         // valid
@@ -237,11 +294,10 @@ public class Test {
         parserTests();
         luhnTests();
         validDateTests();
-        /*
         persnumberTests();
         samnumberTests();
         orgnumberTests();
-        */
+        validCenturyTests();
         // TODO: add more tests
 
     } 

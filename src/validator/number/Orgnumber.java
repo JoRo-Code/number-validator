@@ -1,13 +1,21 @@
 package src.validator.number;
 
-import src.validator.checks.OrgnumberFormatCheck;
+import src.validator.checks.*;
 
-public class Orgnumber extends Number {
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class Orgnumber extends Number{
+    
+    private ArrayList<ValidityCheck> additionalChecks = new ArrayList<ValidityCheck>(Arrays.asList(
+                new CenturyChecker()
+            ,   new OrgMonthChecker()
+            // Add checks here
+    ));
+
     public Orgnumber(String str) {
         super(str);
-        this.checks.add(
-            // Add checks here
-            new OrgnumberFormatCheck()
-        );
+        this.checks.addAll(this.additionalChecks);
     }
+    
 }

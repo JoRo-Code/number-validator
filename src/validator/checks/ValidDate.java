@@ -19,19 +19,6 @@ public class ValidDate extends ValidityCheck {
         this.dayOffset = dayOffset;
     }
 
-    private boolean isValidCentury(Number n) {
-        String c = n.getCentury();
-        boolean result = true;
-
-        if (!c.equals("")) {
-            int century = Integer.parseInt(c);
-            result = 17 < century && century < 21;
-
-        }
-        return result;
-
-    }
-
 
     private boolean isValid(String dateStr) {
         // https://www.baeldung.com/java-string-valid-date
@@ -99,7 +86,7 @@ public class ValidDate extends ValidityCheck {
     public boolean run(Number n) {
 
         String date = getBirthdate(n);
-        return isValidCentury(n) && isValid(date);
+        return isValid(date);
     }
 
 }

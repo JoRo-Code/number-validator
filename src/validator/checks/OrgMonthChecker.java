@@ -2,14 +2,7 @@ package src.validator.checks;
 
 import src.validator.number.Number;
 
-public class OrgnumberFormatCheck extends ValidityCheck {
-
-    private boolean isValidCentury(Number n) {
-        String c =  n.getCentury();
-
-        return c.equals("") || c.equals("16");
-
-    }
+public class OrgMonthChecker extends ValidityCheck {
 
     private boolean isValidMonth(Number n) {
         String m = n.getMonth();
@@ -21,7 +14,7 @@ public class OrgnumberFormatCheck extends ValidityCheck {
     @Override
     public boolean run(Number n) {
 
-        return isValidCentury(n) && isValidMonth(n);
+        return isValidMonth(n);
     }
     
 }
