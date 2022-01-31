@@ -6,16 +6,16 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-public class ValidDate extends ValidityCheck {
+public class ValidDateChecker extends ValidityCheck {
 
     private int dayOffset = 0;
     
-    public ValidDate() {
+    public ValidDateChecker() {
         this(0);
 
     }
     
-    public ValidDate(int dayOffset) {
+    public ValidDateChecker(int dayOffset) {
         this.dayOffset = dayOffset;
     }
 

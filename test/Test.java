@@ -109,7 +109,7 @@ public class Test {
 
 
     private static void luhnTests() {
-        ValidityCheck luhn = new Luhn();
+        ValidityCheck luhn = new LuhnChecker();
         System.out.println(luhn);
         
         List<String> numbers = readFromFile("test/input/validLuhn.txt");
@@ -133,7 +133,7 @@ public class Test {
 
     private static void validDateTests() {
         System.out.println("DateValidator tests");
-        ValidityCheck dateChecker = new ValidDate();
+        ValidityCheck dateChecker = new ValidDateChecker();
 
         String valid = "valid";
         String invalid = "invalid";

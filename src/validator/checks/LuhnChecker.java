@@ -2,7 +2,7 @@ package src.validator.checks;
 
 import src.validator.number.Number;
 
-public class Luhn extends ValidityCheck {
+public class LuhnChecker extends ValidityCheck {
     
     private static int toInt(char c) {
         return c - '0'; 

@@ -53,8 +53,8 @@ public class Number {
    * 
    */
     protected ArrayList<ValidityCheck> checks = new ArrayList<ValidityCheck>(Arrays.asList(
-        new Luhn(),
-        new NumberFormatCheck()
+        new LuhnChecker(),
+        new NumberFormatChecker()
     ));
     
     /**

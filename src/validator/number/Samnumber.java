@@ -8,7 +8,7 @@ import java.util.Arrays;
 public class Samnumber extends Number{
     
     private ArrayList<ValidityCheck> additionalChecks = new ArrayList<ValidityCheck>(Arrays.asList(
-                new ValidDate(60)
+                new ValidDateChecker(60)
             ,   new CenturyChecker()
             // Add checks here
     ));

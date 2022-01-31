@@ -8,7 +8,7 @@ import java.util.Arrays;
 public class Persnumber extends Number {
 
     private ArrayList<ValidityCheck> additionalChecks = new ArrayList<ValidityCheck>(Arrays.asList(
-                new ValidDate()
+                new ValidDateChecker()
             ,   new CenturyChecker()
             // Add checks here
     ));

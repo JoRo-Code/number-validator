@@ -2,7 +2,7 @@ package src.validator.checks;
 
 import src.validator.number.Number;
 
-public class NumberFormatCheck extends ValidityCheck {
+public class NumberFormatChecker extends ValidityCheck {
 
     @Override
     public boolean run(Number n) {
