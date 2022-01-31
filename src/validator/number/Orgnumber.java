@@ -10,6 +10,7 @@ public class Orgnumber extends Number{
     private ArrayList<ValidityCheck> additionalChecks = new ArrayList<ValidityCheck>(Arrays.asList(
                 new CenturyChecker()
             ,   new OrgnumberMonthChecker()
+            ,   new OrgnumberDelimiterChecker()
             // Add checks here
     ));
 
